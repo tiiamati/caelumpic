@@ -3,17 +3,7 @@ import { Http } from "@angular/http";
 
 @Component({
   selector: 'app-root',
-  template: `
-    <header class="jumbotron">
-      <h1 class="text-center">{{titulo}}</h1>
-    </header>
-    
-    <main class="container">
-      <painel *ngFor="let foto of listaFotos" titulo="{{foto.titulo}}">
-        <foto  url="{{foto.url}}" titulo="{{foto.titulo}}"></foto>
-      </painel>
-    </main>
-  `
+  templateUrl: './app.component.html'
   //styles: []
 })
 
