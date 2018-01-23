@@ -4,16 +4,14 @@ import { Http } from "@angular/http";
 @Component({
   selector: 'app-root',
   template: `
-
     <header class="jumbotron">
       <h1 class="text-center">{{titulo}}</h1>
     </header>
     
     <main class="container">
-      {{fotos}}
-      <foto url="./assets/img/img.jpg" titulo="eita"></foto>
-      <foto url="./assets/img/img2.jpg" titulo="eita2"></foto>
-      <foto url="./assets/img/img3.jpg" titulo="eita3"></foto>
+      <painel *ngFor="let foto of listaFotos" titulo="{{foto.titulo}}">
+        <foto  url="{{foto.url}}" titulo="{{foto.titulo}}"></foto>
+      </painel>
     </main>
   `
   //styles: []
@@ -21,14 +19,14 @@ import { Http } from "@angular/http";
 
 export class AppComponent {
   titulo = 'Caelumpic'
-  fotos = []
+  listaFotos = []
   
   constructor(ajax: Http){
     
     ajax.get('http://localhost:3000/v1/fotos')
       .subscribe(
         resp => {
-          this.fotos = resp.json()
+          this.listaFotos = resp.json()
         }
       )
   }
