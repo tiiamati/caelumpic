@@ -9,8 +9,13 @@
         </div>
     </div>
     <div class="row">
-        <painel *ngFor="let foto of listaFotos" titulo="{{foto.titulo}}" class="col-sm-2">
-        <foto  url="{{foto.url}}" titulo="{{foto.titulo}}"></foto>
+        <painel *ngFor="let foto of listaFotos" titulo="{{foto.titulo}}" class="col-sm-4">
+            <foto  url="{{foto.url}}" titulo="{{foto.titulo}}"></foto>
+
+            <div class="text-center">
+                <button (click)="consultar(foto)" class="btn btn-warning mt-2 mr-1">Ver</button>
+                <button (click)="remover(foto)" class="btn btn-danger mt-2">Remover</button>
+            </div>
         </painel>
     </div>
 </main>
