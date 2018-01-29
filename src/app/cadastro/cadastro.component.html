@@ -5,18 +5,26 @@
 </header>
 
 <main class="container">
+    <div *ngIf="mensagem" class="row">
+        <div class="col-sm-12">
+            <p class="alert alert-success"> {{mensagem}}</p>
+        </div>
+    </div>
     <div class="row">
-        <form action="" class="col-sm-7" (submit)="salvar($event)">
+        <form #formCadastro="ngForm" action="" class="col-sm-7" (submit)="salvar($event)">
 
             <div class="form-group">
-                <label for="">Título</label>
-                <input [(ngModel)]="foto.titulo" name="titulo" type="text" class="form-control">
+                <label for="">Título*</label>
+                <input #titulo="ngModel" [(ngModel)]="foto.titulo" name="titulo" type="text" class="form-control" required>
+                <span *ngIf="titulo.invalid && titulo.touched" class="form-control alert-danger">
+                    Campo obrigatório
+                </span>
                 <!--<input (input)="foto.titulo = $event.target.value" value="{{foto.titulo}}" type="text" class="form-control">-->
             </div>
 
             <div class="form-group">
-                <label for="">Url</label>
-                <input [(ngModel)]="foto.url" name="url" type="text" class="form-control">
+                <label for="">Url*</label>
+                <input #url="ngModel" [(ngModel)]="foto.url" name="url" type="text" class="form-control" required>
             </div>
 
             <div class="form-group">
@@ -26,7 +34,7 @@
 
             <a routerLink="" class="btn btn-secondary">Voltar</a>
 
-            <button type="submit" class="btn btn-primary">Salvar</button>
+            <button [disabled]="formCadastro.invalid" type="submit" class="btn btn-primary">Salvar</button>
 
         </form>
 

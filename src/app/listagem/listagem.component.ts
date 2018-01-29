@@ -25,17 +25,19 @@ export class ListagemComponent implements OnInit {
 	remover(foto: FotoComponent){
 		this.servico.deletar(foto)
 						.subscribe(
-							resp => {
-								console.log(foto)
-							},
-							erro => console.log(erro)
-						)
-	}
+							() => {
+								this.listaFotos = this.listaFotos.filter(fotoFilter => fotoFilter != foto)
+								// this.listaFotos = this.listaFotos.filter(
+								// 						fotoFilter  => {
+								// 							if (fotoFilter != foto){
+								// 								return fotoFilter
+								// 							}
+								// 						}
+								// 					)
 
-	consultar(foto: FotoComponent){
-		this.servico.consultar(foto._id)
-						.subscribe(
-							() => console.log(foto)
+													console.log(foto)
+							},
+							erro => {console.log('não apagou')}
 						)
 	}
 
